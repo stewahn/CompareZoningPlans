@@ -22,8 +22,10 @@
 
 			import { ColladaLoader } from 'https://threejs.org/examples/jsm/loaders/ColladaLoader.js';
 			
+			import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+			
 			var container;
-			var camera, scene, renderer, simplegeometry;
+			var camera, controls, scene, renderer, simplegeometry;
 
 			init();
 			animate();
@@ -71,6 +73,22 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
 
+				// controls
+
+				controls = new OrbitControls( camera, renderer.domElement );
+
+				//controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+
+				controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+				controls.dampingFactor = 0.05;
+
+				controls.screenSpacePanning = false;
+
+				controls.minDistance = 100;
+				controls.maxDistance = 500;
+
+				controls.maxPolarAngle = Math.PI / 2;
+				
 				//
 
 				window.addEventListener( 'resize', onWindowResize, false );
