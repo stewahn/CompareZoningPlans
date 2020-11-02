@@ -33,12 +33,10 @@
 				container = document.getElementById( 'container' );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 2000 );
-				camera.position.set( 0, 0, 8 );
+				camera.position.set( 0, 40, 50 );
 				camera.lookAt( 0, 0, 0 );
 
 				scene = new THREE.Scene();
-
-				clock = new THREE.Clock();
 
 				// loading manager
 
@@ -97,14 +95,6 @@
 			}
 
 			function render() {
-
-				var delta = clock.getDelta();
-
-				if ( simplegeometry !== undefined ) {
-
-					simplegeometry.rotation.z += delta * 0.5;
-
-				}
 
 				renderer.render( scene, camera );
 
